@@ -1,0 +1,217 @@
+:root {
+  --bg0: #070a16;
+  --bg1: #0b1240;
+  --card: rgba(255, 255, 255, 0.08);
+  --card-border: rgba(255, 255, 255, 0.14);
+  --text: rgba(255, 255, 255, 0.92);
+  --muted: rgba(255, 255, 255, 0.68);
+  --shadow: rgba(0, 0, 0, 0.35);
+  --accent: #7c3aed;
+  --accent2: #22c55e;
+  --ring: rgba(124, 58, 237, 0.45);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica,
+    Arial, "Apple Color Emoji", "Segoe UI Emoji";
+  color: var(--text);
+  background: radial-gradient(1200px 800px at 20% 10%, rgba(124, 58, 237, 0.35), transparent 55%),
+    radial-gradient(900px 650px at 80% 0%, rgba(34, 197, 94, 0.22), transparent 50%),
+    linear-gradient(180deg, var(--bg0), var(--bg1));
+  overflow-x: hidden;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  position: relative;
+  z-index: 1;
+}
+
+.card {
+  width: min(520px, 100%);
+  padding: 28px 26px;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--card-border);
+  box-shadow: 0 20px 70px var(--shadow);
+  backdrop-filter: blur(10px);
+}
+
+.title {
+  margin: 0 0 18px;
+  font-weight: 760;
+  letter-spacing: -0.02em;
+  font-size: 26px;
+  line-height: 1.12;
+}
+
+.label {
+  display: block;
+  margin: 14px 0 8px;
+  font-size: 14px;
+  font-weight: 650;
+  color: var(--muted);
+}
+
+.input {
+  width: 100%;
+  border-radius: 14px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(0, 0, 0, 0.18);
+  color: var(--text);
+  outline: none;
+  transition: box-shadow 140ms ease, border-color 140ms ease, transform 140ms ease;
+}
+
+.input::placeholder {
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.input:focus {
+  border-color: rgba(124, 58, 237, 0.5);
+  box-shadow: 0 0 0 4px var(--ring);
+  transform: translateY(-1px);
+}
+
+.button {
+  margin-top: 14px;
+  width: 100%;
+  border: 0;
+  border-radius: 14px;
+  padding: 12px 14px;
+  font-weight: 750;
+  color: rgba(255, 255, 255, 0.95);
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.95), rgba(34, 197, 94, 0.85));
+  cursor: pointer;
+  box-shadow: 0 12px 40px rgba(124, 58, 237, 0.25);
+  transition: transform 120ms ease, filter 120ms ease, box-shadow 120ms ease;
+}
+
+.button:hover {
+  filter: brightness(1.03) saturate(1.02);
+  box-shadow: 0 14px 50px rgba(124, 58, 237, 0.3);
+}
+
+.button:active {
+  transform: translateY(1px);
+}
+
+.greeting {
+  margin-top: 16px;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.greeting:not(:empty) {
+  animation: greetingIn 260ms ease both;
+}
+
+@keyframes greetingIn {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animation-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Party popper */
+.popper-piece {
+  position: absolute;
+  left: var(--x0, 50%);
+  top: var(--y0, 35%);
+  width: 8px;
+  height: 14px;
+  border-radius: 4px;
+  background: hsl(var(--hue, 250) 95% 60%);
+  box-shadow: 0 0 18px rgba(255, 255, 255, 0.18);
+  transform-origin: center;
+  animation: popperFly var(--duration, 650ms) cubic-bezier(0.18, 0.75, 0.2, 1) forwards;
+  animation-delay: var(--delay, 0ms);
+}
+
+@keyframes popperFly {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(0deg) scale(0.92);
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(calc(-50% + var(--dx, 0px)), calc(-50% + var(--dy, 0px))) rotate(var(--rot, 0deg))
+      scale(1.02);
+  }
+}
+
+/* Glowing burst */
+.glow-burst {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(124, 58, 237, 0.6) 22%, rgba(34, 197, 94, 0.45) 46%, rgba(0, 0, 0, 0) 72%);
+  filter: drop-shadow(0 0 18px rgba(124, 58, 237, 0.6));
+  transform: translate(-50%, -50%) scale(0.25);
+  opacity: 0;
+  animation: glowBurst 780ms ease-out forwards;
+}
+
+@keyframes glowBurst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.25);
+  }
+  14% {
+    opacity: 1;
+  }
+  65% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.1);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .greeting:not(:empty) {
+    animation: none;
+  }
+  .popper-piece,
+  .glow-burst {
+    animation: none !important;
+  }
+}
+
