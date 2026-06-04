@@ -1,83 +1,33 @@
-<style>
-body{
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#ffecd2,#fcb69f);
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Greeting</title>
+    <link rel="stylesheet" href="src/styles.css" />
+    <link rel="icon" type="image/svg+xml" href="src/favicon.svg" />
+  </head>
+  <body>
+    <div id="animation-layer" class="animation-layer" aria-hidden="true"></div>
 
-.card{
-    background:white;
-    padding:30px;
-    border-radius:15px;
-    text-align:center;
-    box-shadow:0 4px 15px rgba(0,0,0,0.2);
-}
+    <main class="page" aria-label="Greeting app">
+      <section class="card">
+        <label class="label" for="nameInput">Enter Your Name</label>
+        <input
+          id="nameInput"
+          class="input"
+          type="text"
+          placeholder="Type your name here"
+          autocomplete="name"
+          inputmode="text"
+        />
 
-input{
-    padding:10px;
-    width:250px;
-    margin:10px;
-}
+        <button id="greetBtn" class="button" type="button">Greet</button>
 
-button{
-    padding:10px 20px;
-    background:#ff6b6b;
-    color:white;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-}
+        <div id="greeting" class="greeting" aria-live="polite"></div>
+      </section>
+    </main>
 
-#greeting{
-    margin-top:20px;
-    font-size:22px;
-    font-weight:bold;
-}
-
-.blast{
-    position:fixed;
-    top:-20px;
-    font-size:25px;
-    animation:fall 3s linear forwards;
-}
-
-@keyframes fall{
-    from{transform:translateY(0);}
-    to{transform:translateY(110vh);}
-}
-</style>
-
-<script>
-function greetUser() {
-    const name = document.getElementById("nameInput").value;
-
-    if(name.trim() === ""){
-        alert("Please enter your name 😊");
-        return;
-    }
-
-    document.getElementById("greeting").innerHTML =
-        `🙏 Namaste ${name}! 🙏<br>
-         🌸 Welcome to our page 🌸<br>
-         🎉 Have a wonderful day! 🎉`;
-
-    blastEffect();
-}
-
-function blastEffect() {
-    const emojis = ["🎉","✨","🌸","🎊","💖","⭐"];
-
-    for(let i=0;i<30;i++){
-        const el = document.createElement("div");
-        el.className = "blast";
-        el.innerHTML = emojis[Math.floor(Math.random()*emojis.length)];
-        el.style.left = Math.random()*100 + "vw";
-        document.body.appendChild(el);
-
-        setTimeout(()=>el.remove(),3000);
-    }
-}
-</script>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
